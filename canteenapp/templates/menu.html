@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available">
+
+<head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,body,#t{
+            background-image: linear-gradient( 135deg, #F0FF00 10%, #58CFFB 100%);
+            background-repeat: no-repeat;
+        }
+</style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+ <div style="width:100%">
+        <div class="">
+           
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+               
+                    <h1 class="m-0 text-white display-4"><span class="text-primary" style="margin-left: 100px ;">Food</span>Kart</h1>
+            
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="margin-right: 95px;font-size: 16px;">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{% url 'home_user' %}" class="nav-item nav-link">Home</a>
+                             <a href="{% url 'food_view_user' %}" class="nav-item nav-link">Menu</a>
+                           
+
+                            <a href="{% url 'Food_view_user' %}" class="nav-item nav-link">Order</a>
+                           
+                        
+                        <a href="{% url 'Cart' %}" class="nav-item nav-link">Cart</a>
+                         <a href="{% url 'Bill_view' %}" class="nav-item nav-link">Bill</a>
+                         <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                           <a href="https://forms.gle/Gj5Rnso4k7RiQ6o37" class="nav-item nav-link" target="_blank">Feedback</a>
+                    </div>
+                </div>
+            </nav>
+      
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    
+     <div class="container-fluid p-0 mb-5" id='t'>
+    
+     <div id='l'>
+          <h3 id='hw' style="position:relative;top:70px;text-align:center;"></h3>
+          <table id='tab' class="table table-danger table-bordered" style="position:relative;top:80px;position:relative;width:600px;margin-left: auto;margin-right:auto;text-align: center;"></table>
+          <img src='' id='im' style="position:relative;top: 101px;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          width: 350px;
+          border-radius: 103px;">
+    
+        </div>
+
+    <footer>
+        <p style="height: 100px;"></p>
+      </footer>
+    
+</div>
+
+    <!-- JavaScript Libraries -->
+   
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript">
+   var id2,name,price
+    $(document).ready(function(){
+    
+        $.ajax({
+             url:"Aday_food_view",
+             datatype:"json", 
+             success:function(d){
+               if(d=='no data'){
+                  $('#hw').text('Menu is not Available ')
+                var image='static/img/wait.jpg'
+                 $('#im').attr('src',image)
+                }
+                else{
+                    $('#im').remove()
+                $("#tab").empty()
+                    $('#hw').text("Today's Menu")
+                   var tr1=$("<tr/>");
+                   tr1.append("<th>Food Item</th>");
+                   tr1.append("<th>Price</th>");
+                    tr1.append("<th>Plate</th>");
+                       
+                $('#tab').append(tr1);
+                       
+                       for(i=0;i<d.d1.length;i++){
+                        var r1=$("<tr/>")
+                        r1.append("<td><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.name+"'>"+d.d1[i].fields.name+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.plate+"'>"+d.d1[i].fields.plate+"</td>");
+                    
+                          
+                           
+                $('#tab').append(r1)
+                 $('.ed1').addClass('btn btn-danger')
+               
+                }
+                
+                }
+                
+                }                
+    })      
+        })         
+                
+                   
+    
+</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

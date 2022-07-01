@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;">
+
+<head>
+    <meta charset="utf-8">
+    <title>Statistics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<style type="text/css">
+ #t{
+            background: url('static/img/stat.webp') no-repeat; 
+            background-size: cover;
+            height: 100vh; 
+ }
+</style>
+<body >
+    <!-- Navbar Start -->
+  <div style='width:100%'>
+        <div class="">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="m-0 text-white display-4"><span class="text-primary" style="margin-left: 100px;">Food</span>Kart</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="margin-right: 95px;font-size: 16px;">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{% url 'admin_home' %}" class="nav-item nav-link">Home</a>
+                        <a href="{% url 'Show_user' %}" class="nav-item nav-link">Users</a>
+                    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Food-items</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="{% url 'food_item' %}" class="dropdown-item">Add</a>
+                                <a href="{% url 'add_food_item' %}" class="dropdown-item">View</a>
+                            </div>
+                        </div>
+                        <a href="{% url 'View_daily_item_page' %}" class="nav-item nav-link">Menu</a>
+                         <a href="{% url 'show_order_admin' %}" class="nav-item nav-link">Bill</a>
+                          <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                          <!--  <a href="https://docs.google.com/forms/d/1AFHZ61iNSGyJ29OaPw9wG7r291aeZ56RJAzmnxjhZOY/edit" class="nav-item nav-link">feedback</a> -->
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+     <div class="container-fluid p-0 mb-5" id='t'>
+     <div id='l'>
+          <h3 id='hw' style="position:relative;top:70px;text-align:center;background-color: yellow;width: 160px;
+          text-align: center;
+          padding: 5px;
+          font-weight: 300;
+          margin-left: auto;
+          margin-right: auto;
+          border: 2px solid black;"></h3>
+          <div style="width: max-content;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          place-content: center;
+          /* top: 110px; */
+          margin-top: 81px;
+          margin-bottom: -70px;">
+            <input type="date" id="search">
+            <input type="submit" id="submit">
+          </div>
+          <table id='tab' class="table table-bordered table-success" style="position:relative;position:relative;top:100px;width:600px;text-align: center;margin-left: auto;
+          margin-right: auto;
+          display: table;"></table>
+    </div>
+    </div>
+   
+
+    <!-- JavaScript Libraries -->
+   
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    
+        $.ajax({
+             url:"statistics",
+             datatype:"json", 
+             success:function(d){
+               if(d=='no data'){
+                  $('#hw').text('Statistics is Not Available')
+                }else{
+                $("#tab").empty()
+                    $('#hw').text("Statistics")
+                   var tr1=$("<tr/>");
+                   tr1.append("<th>Date</th>");
+                   tr1.append("<th>Gross Amount</th>");
+                       
+                $('#tab').append(tr1);
+                       
+                       for(i=0;i<d.d1.length;i++){
+                        var r1=$("<tr/>")
+                        r1.append("<td><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.date+"'>"+d.d1[i].fields.date+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.amount+"'>"+d.d1[i].fields.amount+"</td>");
+                    
+                $('#tab').append(r1)               
+                }
+                
+                }
+                
+                }                
+    }) 
+    
+    
+    $('#submit').click(function(){
+         var temp=document.getElementById('search').value();
+         alert(temp)
+    })
+        })    
+    
+</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+     
+                
+                   
+    
+</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

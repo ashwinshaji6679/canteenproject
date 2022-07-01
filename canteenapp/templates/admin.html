@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+        .stats{
+            border-radius: 20px;
+            font-size: 25px;
+            padding: 10px;
+            font-weight: 600;
+            background-color: yellow;
+            color:blue;
+            transition: 0.15s;
+            text-decoration: none;
+        }
+        .stats:hover{
+            background-color:burlywood;
+            color:darkblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+
+    <div style='width:100%'>
+        <div class="">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+                    <h1 class="m-0 text-white display-4"><span class="text-primary" style="margin-left: 100px;">Food</span>Kart</h1>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="margin-right: 95px;font-size: 16px;">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{% url 'admin_home' %}" class="nav-item nav-link">Home</a>
+                        <a href="{% url 'Show_user' %}" class="nav-item nav-link">Users</a>
+                    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Food-items</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="{% url 'food_item' %}" class="dropdown-item">Add</a>
+                                <a href="{% url 'add_food_item' %}" class="dropdown-item">View</a>
+                            </div>
+                        </div>
+                        <a href="{% url 'View_daily_item_page' %}" class="nav-item nav-link">Menu</a>
+                         <a href="{% url 'show_order_admin' %}" class="nav-item nav-link">Bill</a>
+                          <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Navbar End -->
+
+           <div class="">
+                 <div class="c">
+                    <img class="img-fluid" src="{% static 'img/food2.jpg' %}" alt="Image"  style="width:100%; max-width: 1400px;height: 100vh;filter: brightness(0.5);position: absolute;">
+                        <div class="overlay" style="width: 100%; max-width: 900px;top: 120px;
+                        margin-left: 107px;display: flexbox;position: relative;">
+                            <h3 class="display-3 text-white">Canteen Management<br>System</h3>
+                            <br><br><br><br>
+                            <a href="{% url 'stats_view' %}" class="stats">View Stats</a>
+                           
+                        </div>
+                    </div>
+                </div>
+            
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
