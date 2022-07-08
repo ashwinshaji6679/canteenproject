@@ -31,7 +31,7 @@ contextvars==2.4
 cryptography==36.0.2
 cycler==0.10.0
 cymem==2.0.5
-Cython==0.29.14
+
 cytoolz==0.11.0
 dataclasses==0.8
 decorator==4.4.2
