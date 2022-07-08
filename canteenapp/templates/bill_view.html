@@ -1,0 +1,401 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);">
+<head>
+    <meta charset="utf-8">
+    <title>View Bills</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+      #t{
+        background-color: #FBDA61;
+        background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);
+          -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            
+      }
+      #no_more{
+        margin-bottom:40px;
+        margin-top:-115px;
+        margin-right:auto;
+        margin-left:auto;
+        display:block;
+        width: max-content;
+        font-family: 'Raleway';
+        font-weight: 700;
+        color: teal;
+      }
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+   <div style="width:100%">
+        <div class="">
+           
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+                    <h1 class="m-0 text-white display-4"><span class="text-primary" style="margin-left: 100px ;">Food</span>Kart</h1>
+              
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="margin-right: 95px;font-size: 16px;">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{% url 'home_user' %}" class="nav-item nav-link">Home</a>
+                             <a href="{% url 'food_view_user' %}" class="nav-item nav-link">Menu</a>
+                           
+                    
+                       
+                            <a href="{% url 'Food_view_user' %}" class="nav-item nav-link">Order</a>
+                           
+                        
+                        <a href="{% url 'Cart' %}" class="nav-item nav-link">Cart</a>
+                         <a href="{% url 'Bill_view' %}" class="nav-item nav-link">Bill</a>
+                         <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                           <a href="https://forms.gle/Gj5Rnso4k7RiQ6o37" class="nav-item nav-link" target="_blank">Feedback</a>
+                    </div>
+                </div>
+            </nav>
+      
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+<div class="container-fluid p-0 mb-5" id='t'>
+    
+     <div id='l' style="display:flow-root ;">
+          <h3 id='hw' style="position:relative;top:70px;text-align:center;margin-left: auto;margin-right: auto;display: block;"></h3>
+          <table id='tab' class="table table-dark" style="position:relative;top:80px;margin-bottom:15%;width:600px;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
+
+          <h4 id='h' style="position: relative;
+          top: -155px;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;"></h4>
+            <img src='' id='im' style="position: relative;
+            top: -72px;
+            width: 390px;
+            margin-top: -57px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            height: 350px;
+            border-radius: 50%;">
+             <table id='tab1' class="table table-bordered table-info" style="margin-bottom:40px;position:relative;top:100px;position:relative;width:600px;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
+             <button id="more" style="margin-left: auto;
+             margin-right: auto;
+             display: block;
+             margin-top: -115px;
+             margin-bottom: 40px;
+             border-radius: 15px;
+            padding: 3px 7px 3px 7px;
+            margin-bottom: 40px;
+            color: black;
+            font-weight: 700;
+             background-color: ghostwhite;">Load More</button>
+             <label id="no_more" style="display:none;">No More Bills to Load</label>
+            <button id='g1' style="margin: 7% auto 10%;background-color:orange;top:80px;position:relative;width:100px;margin-left: auto;margin-right: auto;display: block;"></button>
+    </div>
+    <!-- <footer>
+      <p style="height: 70px;display:inline-flex; background-color: #FBDA61;
+      background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);"></p>
+    </footer> -->
+
+</div>
+
+    <!-- JavaScript Libraries -->
+   
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript">
+  
+   var id2,name,price,number
+    $(document).ready(function(){
+      var count=0;
+
+       $('#g1').hide()
+    
+        $.ajax({
+             url:"User_bill",
+             datatype:"json", 
+             success:function(d){
+              if(d=='no data'){
+                 var image='static/img/bag.webp'
+                 $('#h').text('No Upcoming Orders !!')
+                 $('#im').attr('src',image)
+                 $('#no_more').hide()
+                 $('#more').hide()
+               
+                }else{
+                $("#tab").empty()
+                $('#no_more').hide()
+                $('#im').hide()
+                    $('#hw').text('Your Order History')
+                   var tr1=$("<tr/>");
+                   tr1.append("<th>Bill No</th>");
+                   tr1.append("<th>Items</th>");
+                    tr1.append("<th>Quantity</th>");
+                     tr1.append("<th>Amount</th>");
+                    tr1.append("<th>Status</th>");
+
+                       
+                $('#tab').append(tr1);
+                if(d.d1.length>=10)
+                        temp_val=10;
+                    else
+                    temp_val=d.d1.length;
+                       
+                      //  for(i=0;i<d.d1.length;i++){
+                        for(i=0;i<temp_val;i++){
+                        var r1=$("<tr/>")
+                        v=d.d1[i].fields.item
+                      
+                        v1=v.replace('[','')
+                        v2=v1.replace(/'/g,'')
+                         
+                        v=v2.replace(']','')
+                        v3=d.d1[i].fields.quan
+                        v4=v3.replace(/'/g,'')
+                        v4=v4.replace('[','')
+                        v4=v4.replace(']','')
+                       
+                        r1.append("<td style='font-family:Poppins'><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.ids+"'>"+d.d1[i].fields.ids+"</td>");
+                       
+                          r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
+                          r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
+                            r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
+                          
+                         if (d.d1[i].fields.use!='deleted' && d.d1[i].fields.use!='used'){
+                              r1.append("<td><input type='button' class='ed1' value='View'></td>");
+                        
+                         }
+                         else
+                         r1.append("<td style='color:lime'><input type='hidden' class='pr' value='"+"Received\t"+"'>"+"Received\t"+"</td>")
+                             
+                           
+                $('#tab').append(r1)
+                 $('.ed1').addClass('btn btn-danger')
+               
+                }
+                //if(d.d1.length-10>count)
+
+                if(d.d1.length>=10)
+                        count+=10;
+                    else
+                    count+=d.d1.length;
+
+                } 
+                
+                
+                }                
+    })
+        $(document).on('click','.ed1',function(){
+          $('#g').show()
+          $('#no_more').hide()
+          $('#im').hide()
+                row=$(this).closest("tr")
+               number=row.find(".pn").val()
+                $.ajax({
+                    url:'View_bill',
+                    datatype:'json',
+                    data:{
+                        'number':number
+                    },
+                    success:function(d){
+                        $('#tab').remove()
+                       // $('#hw').remove()
+                        $('#hw').text('Bill Summary')
+                        for(i=0;i<d.d1.length;i++){
+                         var tr1=$("<tr/>");
+                        tr1.append("<th id='h'>Bill No : "+d.d1[i].fields.ids+"</th>");
+                         tr1.append("<th colspan=3>Prepared By -- Gourmet Kitchen</th>");
+  
+                          $('#tab1').append(tr1)
+                       var tr2=$("<tr/>");
+                          tr2.append("<th>Items</th>");
+                           tr2.append("<th>Quantity</th>")
+                            tr2.append("<th>Price</th>")
+                              tr2.append("<th>Total</th>")
+                                
+                                 
+                 $('#tab1').append(tr2)
+                               v=d.d1[i].fields.item
+                                v5=d.d1[i].fields.quan
+                               
+                                 v7=d.d1[i].fields.qprice
+                                 y=d.d1[i].fields.price
+                                   y1=d.d1[i].fields.status
+                                  v7=v7.replace('[','')
+                        v7=v7.replace(/'/g,'')
+                         
+                        v7=v7.replace(']','')
+                               v7=v7.split(',')
+                                
+                                  v5=v5.replace('[','')
+                        v5=v5.replace(/'/g,'')
+                         
+                        v5=v5.replace(']','')
+                               v5=v5.split(',')
+
+                        v1=v.replace('[','')
+                        v2=v1.replace(/'/g,'')
+                         
+                        v=v2.replace(']','')
+                               v4=v.split(',')
+                               
+                               for(i=0;i<v4.length;i++){
+                                     var tr3=$("<tr/>");
+                                     v6=v5[i]*v7[i]
+                               tr3.append("<td>"+v4[i]+"</td>")
+                                  tr3.append("<td>"+v5[i]+"</td>")
+                                    tr3.append("<td>"+v7[i]+"</td>")
+                                     tr3.append("<td>"+v6+"</td>")
+                                      
+                                        
+                                 $('#tab1').append(tr3)
+                             }
+
+                        var tr5=$("<tr/>");
+                        tr5.append("<th>Total Amount : "+y+"</th>");
+                        tr5.append("<th colspan=3>Status : "+y1+"</th>");
+               $('#tab1').append(tr5)
+               $('#g1').show()
+                $('#g1').text('Collect Food')
+                $('th').css('margin','10px')
+                
+                    }
+}
+            })
+              $('#g1').click(function(){
+                
+              //  alert(number)
+                $.ajax({
+                    url:'Delete_bill',
+                    datatype:'json',
+                    data:{
+                        'number':number
+                    },
+                    success:function(d){
+                      $('#g1').remove()
+                        window.print();
+                        alert("Your Food is Ready to Collect")
+                        window.location.href='Bill_view'
+                       
+                    }
+
+            })
+              })
+
+              })
+
+            $('#more').click(function(){
+              $('#no_more').hide()
+              $('#im').hide()
+
+              $.ajax({
+             url:"User_bill",
+             datatype:"json", 
+             success:function(d){
+               if(d.d1.length-count>=10){     
+                        for(i=count;i<count+10;i++){
+                        var r1=$("<tr/>")
+                        v=d.d1[i].fields.item
+                      
+                        v1=v.replace('[','')
+                        v2=v1.replace(/'/g,'')
+                         
+                        v=v2.replace(']','')
+                        v3=d.d1[i].fields.quan
+                        v4=v3.replace(/'/g,'')
+                        v4=v4.replace('[','')
+                        v4=v4.replace(']','')
+                       
+                        r1.append("<td style='font-family:Poppins'><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.ids+"'>"+d.d1[i].fields.ids+"</td>");
+                       
+                          r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
+                          r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
+                            r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
+                          
+                         if (d.d1[i].fields.use!='deleted' && d.d1[i].fields.use!='used'){
+                              r1.append("<td><input type='button' class='ed1' value='View'></td>");
+                        
+                         }
+                         else
+                         r1.append("<td style='color:lime'><input type='hidden' class='pr' value='"+"Received\t"+"'>"+"Received\t"+"</td>")
+                             
+                           
+                $('#tab').append(r1)
+                 $('.ed1').addClass('btn btn-danger')
+               
+                }
+                 count+=10;
+                } 
+                else{
+                  $('#more').hide()
+                  for(i=count;i<d.d1.length-count;i++){
+                        var r1=$("<tr/>")
+                        v=d.d1[i].fields.item
+                      
+                        v1=v.replace('[','')
+                        v2=v1.replace(/'/g,'')
+                         
+                        v=v2.replace(']','')
+                        v3=d.d1[i].fields.quan
+                        v4=v3.replace(/'/g,'')
+                        v4=v4.replace('[','')
+                        v4=v4.replace(']','')
+                       
+                        r1.append("<td style='font-family:Poppins'><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.ids+"'>"+d.d1[i].fields.ids+"</td>");
+                       
+                          r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
+                          r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
+                            r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
+                          
+                         if (d.d1[i].fields.use!='deleted' && d.d1[i].fields.use!='used'){
+                              r1.append("<td><input type='button' class='ed1' value='View'></td>");
+                        
+                         }
+                         else
+                         r1.append("<td style='color:lime'><input type='hidden' class='pr' value='"+"Received\t"+"'>"+"Received\t"+"</td>")
+                             
+                           
+                $('#tab').append(r1)
+                 $('.ed1').addClass('btn btn-danger')
+               
+                }
+                 count+=d.d1.length-count;
+                 $('#no_more').show()
+                }
+                
+                
+                }                
+    })
+            })
+       })
+                   
+    
+</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

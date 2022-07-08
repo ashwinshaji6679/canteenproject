@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;">
+
+<head>
+    <meta charset="utf-8">
+    <title>Current Orders</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicon -->
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+  
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+
+#myInput {
+    background-image: url(static/img/search.webp);
+    background-position: -9px -8px;
+    background-repeat: no-repeat;
+    background-size: 60px 70px;
+    width: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: -15px;
+    margin-top: 81px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+}
+    </style>
+</head>
+
+
+<body >
+    <!-- Navbar Start -->
+    <div style='width:100%'>
+        <div class="">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+                <!-- <a href="index.html" class="navbar-brand"> -->
+                    <h1 class="m-0 text-white display-4"><span class="text-primary" style="margin-left: 100px ;">Food</span>Kart</h1>
+                <!-- </a> -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="margin-right: 95px;font-size: 16px;">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{% url 'admin_home' %}" class="nav-item nav-link">Home</a>
+                        <a href="{% url 'Show_user' %}" class="nav-item nav-link">Users</a>
+                    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Food-items</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="{% url 'food_item' %}" class="dropdown-item">Add</a>
+                                <a href="{% url 'add_food_item' %}" class="dropdown-item">View</a>
+                            </div>
+                        </div>
+                        <a href="{% url 'View_daily_item_page' %}" class="nav-item nav-link">Menu</a>
+                         <a href="{% url 'show_order_admin' %}" class="nav-item nav-link">Bill</a>
+                          <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    
+     <div class="container-fluid p-0 mb-5" id='t'>
+     <div id='l'>
+
+          <h3 id='hw' style="position:relative;top:70px;text-align:center;margin-left: auto;margin-right: auto;display: block;"></h3>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="  Enter Bill ID ">
+          <table id='tab' class="table table-dark" style="position:relative;top:60px;position:relative;width:600px;padding: auto;margin-left: auto;margin-right: auto;display: table;text-align: center;"></table>
+          <h4 id='h' style="position:relative;top:70px;text-align:center;margin-left: auto;margin-right: auto;display: block;"></h4>
+          <img src='' id='im' style="position:relative;top: 95px;height: 410px;width: 446px;margin-top: -44px;margin-left: auto;
+          margin-right: auto;
+          display: block;">
+    </div>
+    <footer>
+        <p style="height: 100px;"></p>
+      </footer>
+      </div>
+  
+   
+    <!-- JavaScript Libraries -->
+   
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript">
+   var id2,name,price
+    $(document).ready(function(){
+    
+        $.ajax({
+             url:"Order_admin_view",
+             datatype:"json", 
+             success:function(d){
+              if(d=='no data'){
+                var image='static/img/notfound.jpg'
+                $('#hw').show()
+                $('#hw').text('No More Orders Left')
+                $('#im').attr('src',image)
+                $('#h').remove()
+               $("#myInput").hide()
+                }
+               else{
+                $("#tab").empty()
+               $("#myInput").show()
+                    $('#hw').text("Today's Orders")
+                    $('#im').remove()
+                   var tr1=$("<tr/>");
+                     tr1.append("<th>Customer name</th>");
+                      tr1.append("<th>Bill no</th>");
+                   tr1.append("<th>Food item</th>");
+                     tr1.append("<th>Quantity</th>");
+                   tr1.append("<th>Price</th>");
+                   tr1.append("<th>Time</th>");
+                    tr1.append("<th>Date</th>");
+                      tr1.append("<th>Status</th>");
+                       
+                $('#tab').append(tr1);
+                       
+                       for(i=0;i<d.d1.length;i++){
+                        var r1=$("<tr/>")
+                         v=d.d1[i].fields.item
+                      
+                        v1=v.replace('[','')
+                        v2=v1.replace(/'/g,'')
+                         
+                        v=v2.replace(']','')
+                        v3=d.d1[i].fields.quan
+                        v4=v3.replace(/'/g,'')
+                        v4=v4.replace('[','')
+                        v4=v4.replace(']','')
+                        r1.append("<td><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.name+"'>"+d.d1[i].fields.name+"</td>");
+                          r1.append("<td style=font-family:'Poppins'><input type='hidden' class='pr' value='"+d.d1[i].fields.ids+"'>"+d.d1[i].fields.ids+"</td>");
+                           r1.append("<td><input type='hidden' class='pr1' value='"+v+"'>"+v+"</td>");
+                              r1.append("<td><input type='hidden' class='pr1' value='"+v4+"'>"+v4+"</td>");
+                         r1.append("<td><input type='hidden' class='pr1' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
+                         r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.time+"'>"+d.d1[i].fields.time+"</td>");
+                         r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.date+"'>"+d.d1[i].fields.date+"</td>");
+                           r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
+                            r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.use+"'>"+d.d1[i].fields.use+"</td>");
+                    
+                              r1.append("<td><input type='button' class='ed1' value='Delete'></td>");
+                             
+                           
+                $('#tab').append(r1)
+                 $('.ed1').addClass('btn btn-danger')
+               
+                }
+                } 
+                
+                
+                }                
+    })
+         $(document).on('click','.ed1',function(){
+               
+              row=$(this).closest("tr")
+               number=row.find(".pr").val()
+                $.ajax({
+                    url:'Remove_bill',
+                    datatype:'json',
+                    data:{
+                        'number':number
+                    },
+                    success:function(d){
+                        alert(d)
+                        location.reload()
+                       
+                    }
+
+            })
+              })
+
+      })             
+    
+</script>
+
+<script>
+
+        function myFunction() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("tab");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+
+</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

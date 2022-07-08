@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="description" content="">
+    <meta name="author" content=""> -->
+
+    <title>Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+
+    <style>
+
+     .center{
+        position: absolute;
+     }
+     .form{
+        width: 300px;
+     }
+     #password-field{
+        box-sizing: border-box;
+        border-radius: 50px;
+        text-indent: 10px;
+        padding:4px;
+     }
+        .toggle-password{
+        position:relative;
+        border-radius: 50%;
+        width:40px;
+        height: 40px;
+        top:-146px;
+        right: -242px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 20px;
+        cursor: pointer;
+     }
+     .toggle-password.active i.fa-eye{
+        display: none;
+     }
+     .toggle-password.active i.fa-eye-slash{
+        display: inline;
+     }
+     .toggle-password i.fa-eye-slash{
+        display: none;
+     }
+     .password-policies{
+        position: relative;
+        top:-147px;
+        left: auto;
+        width: 350px;
+        height: 0px;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        box-sizing: border-box;
+        opacity: 1;
+        overflow: hidden;
+        transition: height 300ms ease-in-out,
+                    opacity 300ms ease-in-out;
+     }
+     .password-policies.active{
+        opacity: 1;
+        padding: 10px;
+        height: 180px;
+     }
+    .password-policies > div {
+        margin:15px 10px;
+        font-weight: 600;
+        color:#888;
+     }
+     .password-policies > div.active {
+        color:red;
+        font-weight: 800;
+     }
+
+
+
+
+
+
+    </style>
+
+</head>
+
+<body style="background-image:url(/static/img/reg-back2.jpg); background-size: cover;
+background-repeat: no-repeat;
+height: auto;">
+
+    <div class="container" style="margin-top: 86px;
+    width: max-content;
+    margin-left: 615px;
+    margin-left: auto;
+    display: block;">
+
+        <div class="card o-hidden border-0 shadow-lg my-5"> 
+            <div class="container" style="background-color: palegoldenrod;">
+            <div class="card-body p-0"> 
+                <div class="row"> 
+                   
+                    <div class="container-fluid">
+                        <div class="container" style="margin-left: auto;
+                        height: 480px;
+                        width: 610px;
+                        background-color: palegoldenrod;
+                        margin-right: auto;
+                        display: block;
+                        padding: 10px;">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account</h1>
+                            </div>
+                            
+        
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="name" id="li" placeholder="Full Name" style="text-align:center;" required>
+                                    </div><br>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="username" id="l1" placeholder="Username" style="text-align:center;" required>
+                                    </div><br>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="id" id="l3" placeholder="College_id" style="text-align:center; margin-top: 14.5px;" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="email" class="form-control form-control-user" name="email" id="l4" placeholder="Email id" style="text-align:center; margin-top: 15px;" required>
+                                    </div><br>
+                                    
+                                            <!-- Password -->
+                                        <!-- <div class="center"> -->
+                                            <div class="form">
+                                                <div class="form-element" style="margin-top:35px ;margin-left: 144px;position: relative;">
+                                                    <input type="password" id="password-field" style="margin-left: 12px;width: 275px;" placeholder="Password" required>
+                                                    <div class="toggle-password" style="margin-top:111px;">
+                                                        <i class="fa fa-eye"></i>
+                                                        <i class="fa fa-eye-slash"></i>
+                                                    </div>
+                                                    <div class="password-policies">
+                                                        <div class="policy-length">
+                                                            8 Characters
+                                                        </div>
+                                                        <div class="policy-number">
+                                                            Contains Number
+                                                        </div>
+                                                        <div class="policy-uppercase">
+                                                            Contains Uppercase
+                                                        </div>
+                                                        <div class="policy-special">
+                                                            Contains Special Character
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <!-- Password End -->
+
+                                  
+          <button id="i" class="btn btn-primary btn-user btn-block" style="margin-top: -35px;
+          width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;">
+                                    Register Account
+                                </button>
+                            </div>
+
+
+                            <div class="text-center" style="position:relative;top:-25px">
+                                <a class="small" href="{% url 'Display_login' %}">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+        </div>
+
+
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+<script type="text/javascript">
+    var t1=0,t2=0,t3=0,t4=0;
+    $(document).ready(function(){
+        
+        $('#i').click(function(){
+            var name=$('#li').val()
+            var password=$('#password-field').val()
+            var username=$('#l1').val()
+              var college_id=$('#l3').val()
+            var email=$('#l4').val()
+            let pattern=/^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/i;
+    if(email.match(pattern) && t1==1 && t2==1 && t3==1 && t4==1)
+    {
+        
+            $.ajax({
+                url:"user_reg",
+                datatype:"json",
+                data:{
+                     "name":name,
+                     "password":password,
+                      "username":username,
+                      "college_id":college_id,
+                      "email":email
+                     
+                },
+             success:function(d){
+                    
+                    if(d=="Please fill out all the fields"){
+                      alert(d)
+                       window.location.href="reg";
+                    }
+                     else if(d=="Already Registered"){
+                      alert("Already Registered")
+                       window.location.href='Display_login';
+                    }
+                  
+                  else{
+                     alert(d);
+                     window.location.assign("{% url 'Display_login' %}");
+                  }
+                }
+              
+
+             
+            })
+        }
+        else{
+        if(t1!=1 || t2!=1 || t3!=1 || t4!=1)
+        {
+        alert("Password Entered does not satisfy criteria");
+        document.getElementById("password-field").value="";
+        }
+        else
+        {
+        alert("Please Enter a Valid Email Address !!");
+        document.getElementById("l4").value="";
+        }
+    }
+        })
+      })
+
+    function _id(name){
+        return document.getElementById(name);
+    }
+    function _class(name){
+        return document.getElementsByClassName(name);
+    }
+    _class("toggle-password")[0].addEventListener("click",function(){
+        _class("toggle-password")[0].classList.toggle("active");
+        if(_id("password-field").getAttribute("type")=="password"){
+            _id("password-field").setAttribute("type","text")
+        }else{
+            _id("password-field").setAttribute("type","password")
+        }
+});
+_id("password-field").addEventListener("focus",function(){
+    _class("password-policies")[0].classList.add("active");
+});
+_id("password-field").addEventListener("blur",function(){
+    _class("password-policies")[0].classList.remove("active");
+});
+_id("password-field").addEventListener("keyup",function(){
+    let password =_id("password-field").value;
+
+    if(/[A-Z]/.test(password)){
+        _class("policy-uppercase")[0].classList.add("active");
+        t1=1;
+    }
+    else{
+        _class("policy-uppercase")[0].classList.remove("active");
+        t1=0;
+    }
+    if(/[0-9]/.test(password)){
+        _class("policy-number")[0].classList.add("active");
+        t2=1;
+    }
+    else{
+        _class("policy-number")[0].classList.remove("active");
+        t2=0;
+    }
+    if(/[^A-Za-z0-9]/.test(password)){
+        _class("policy-special")[0].classList.add("active");
+        t3=1;
+    }
+    else{
+        _class("policy-special")[0].classList.remove("active");
+        t3=0;
+    }
+    if(password.length>7){
+        _class("policy-length")[0].classList.add("active");
+        t4=1;
+    }
+    else{
+        _class("policy-length")[0].classList.remove("active");
+        t4=0;
+    }
+});
+
+
+
+
+</script>
+</body>
+</html>
