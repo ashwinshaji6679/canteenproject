@@ -52,7 +52,6 @@ cryptography==3.4.8
 cycler==0.11.0
 Cython==0.29.28
 cytoolz==0.11.0
-daal4py==2021.5.0
 dask==2022.2.1
 datashader==0.13.0
 debugpy==1.5.1
