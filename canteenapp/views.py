@@ -166,7 +166,7 @@ def Day_food_view(request):
 
     print(now.strftime("%H:%M:%S"))
     x = datetime.strptime(x,"%H:%M:%S")
-    y = datetime.strptime('15:30:00',"%H:%M:%S")
+    y = datetime.strptime('10:30:00',"%H:%M:%S")
     y1= datetime.strptime('16:30:00',"%H:%M:%S")
     
     if day=='Sun':
