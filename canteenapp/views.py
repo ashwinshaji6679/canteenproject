@@ -166,8 +166,8 @@ def Day_food_view(request):
 
     print(now.strftime("%H:%M:%S"))
     x = datetime.strptime(x,"%H:%M:%S")
-    y = datetime.strptime('11:30:00',"%H:%M:%S")
-    y1= datetime.strptime('16:30:00',"%H:%M:%S")
+    y = datetime.strptime('05:00:00',"%H:%M:%S")
+    y1= datetime.strptime('11:00:00',"%H:%M:%S")
     
     if day=='Sun':
         return HttpResponse("holiday")
