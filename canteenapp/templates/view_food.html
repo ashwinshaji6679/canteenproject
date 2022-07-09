@@ -21,12 +21,30 @@
 <style type="text/css">
   #t{
     background-image:url('static/img/back2.jpg');
-    width:100%; 
-    max-width: 1400px;
-    height:max-content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
  }
-</style>
-<body >
+
+#myInput {
+    background-image: url(static/img/search.webp);
+    background-position: -9px -8px;
+    background-repeat: no-repeat;
+    background-size: 60px 70px;
+    width: 25%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: -15px;
+    margin-top: 81px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+}
+    </style>
+
+<body id="t">
     <!-- Navbar Start -->
    <div style='width:100%'>
         <div class="">
@@ -65,6 +83,7 @@
     
      <div id='l'>
           <h1 style="position:relative;top:70px;text-align:center;background-color:white;color: black;width:212px;margin-left:auto;margin-right: auto;display: block;">Items List</h1>
+          <input type="text" id="myInput" style="margin-bottom: -60px;position: relative;border-radius: 15px;" onkeyup="myFunction()" placeholder="  Enter Food Item ">
           <table id='tab' class="table table-dark" style="position:relative;top:100px;width:600px;text-align: center;margin-bottom:200px;margin-left: auto;
           margin-right: auto;
           display: table;"></table>
@@ -183,8 +202,6 @@
             
                $('#exampleModalLong').modal('show');
                $('#id2').val(id2)
-              //  $('#name').val(name)
-              //  $('#price').val(price)
                 document.getElementById("name").innerHTML=name;
                 document.getElementById("price").innerHTML=price;
               
@@ -259,26 +276,6 @@
             }
             })
             })
-            $('#p3').click(function(){
-
-            var id2= $('#id3').val()
-            var name= $('#name3').val()
-            var price=  $('#price3').val()
-
-            $.ajax({
-            url:'/edit_food/',
-            datatype:'json',
-            data:{
-                "id2":id2,
-                "name":name,
-                "price":price,
-            },
-            success:function(d){
-            alert(d)
-            location.reload();
-            }
-            })
-            })
                   $(document).on("click",".ed2",function(){
             var row=$(this).closest("tr")
             var id2=row.find(".id").val()
@@ -297,6 +294,31 @@
         })
                    })
     
+</script>
+<script>
+
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tab");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  } 
+
 </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
   
