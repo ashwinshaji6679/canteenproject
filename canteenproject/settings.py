@@ -30,7 +30,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['192.168.18.7',
 '127.0.0.1','acms-mits.herokuapp.com']
 
-#STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 #STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 # Application definition
 
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'canteenproject.urls'
 
 TEMPLATES = [
