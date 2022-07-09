@@ -30,7 +30,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['192.168.18.7',
 '127.0.0.1','acms-mits.herokuapp.com']
 
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 # Application definition
 
 INSTALLED_APPS = [
@@ -122,8 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 #STATIC_ROOT=os.path.join(BASE_DIR,'/canteenapp/staticfiles')
-#STATIC_URL = '/static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
