@@ -166,8 +166,8 @@ def Day_food_view(request):
 
     print(now.strftime("%H:%M:%S"))
     x = datetime.strptime(x,"%H:%M:%S")
-    y = datetime.strptime('00:02:00',"%H:%M:%S")
-    y1= datetime.strptime('23:58:00',"%H:%M:%S")
+    y = datetime.strptime('10:30:00',"%H:%M:%S")
+    y1= datetime.strptime('16:30:00',"%H:%M:%S")
     
     if day=='Sun':
         return HttpResponse("holiday")
@@ -481,15 +481,15 @@ def increment(request):
             if dayfood1.objects.filter(name=item,date=o).exists():
                 obj2=dayfood1.objects.get(name=item,date=o)
                 print(obj2.plate)
-                obj2.plate=str(int(obj2.plate)-1)
                 v4=int(obj2.plate)-1
+                obj2.plate=str(int(obj2.plate)-1)
                 obj2.save()
                 obj3=cart.objects.get(key=ci)
                 obj3.quantity=str(int(obj3.quantity)+1)
                 print(obj3.quantity)
                 obj3.save()
                 if v4==0:
-                   dayfood1.objects.get(key=id2).delete()
+                   dayfood1.objects.get(name=item,date=o).delete()
                 return HttpResponse("Incremented")
             else:
                 return HttpResponse("Out of Stock") 
