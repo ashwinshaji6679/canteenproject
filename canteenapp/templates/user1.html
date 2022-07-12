@@ -60,7 +60,11 @@
      <div class="container-fluid p-0 mb-5" id='t'>
           
                  <div id='l'>
-                    <img class="img-fluid" src="{% static 'img/res2.jpg' %}" alt="Image"  style="width:100%; max-width: 1400px;height: 100vh; filter: brightness(0.5);position: absolute;">
+                    <img class="img-fluid" src="{% static 'img/res2.jpg' %}" alt="Image"  style="    width: fit-content;
+                    max-width: -webkit-fill-available;
+                    height: fit-content;
+                    filter: brightness(0.5);
+                    position: fixed;">
                         <div class="overlay" style="width: 100%; max-width: 900px;display: flexbox;position: relative;top: 180px;
                         margin-left: 110px;">
                             <h5 class="text-white text-uppercase mb-md-3">Click To Not Crave</h5>

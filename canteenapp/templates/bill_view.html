@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" style="height: -webkit-fill-available;background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);">
+<html lang="en" style="height:fit-content;background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);">
 <head>
     <meta charset="utf-8">
     <title>View Bills</title>
@@ -26,8 +26,9 @@
             -o-background-size: cover;
             background-size: cover;
             
-      }
+      } 
       #no_more{
+        position: relative;
         margin-bottom:40px;
         margin-top:-115px;
         margin-right:auto;
@@ -42,7 +43,7 @@
     </style>
 </head>
 
-<body>
+<body id="t" >
     <!-- Navbar Start -->
    <div style="width:100%">
         <div class="">
@@ -77,10 +78,11 @@
 
 <div class="container-fluid p-0 mb-5" id='t'>
     
-     <div id='l' style="display:flow-root ;">
+     <div id='l' style="display:flow-root;">
           <h3 id='hw' style="position:relative;top:70px;text-align:center;margin-left: auto;margin-right: auto;display: block;"></h3>
-          <table id='tab' class="table table-dark" style="position:relative;top:80px;margin-bottom:15%;width:600px;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
-
+          <div style="overflow-x:auto;overflow-y: hidden;">
+          <table id='tab' class="table table-dark" style="position:relative;top:80px;margin-bottom:9.5%;width:fit-content;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
+</div>
           <h4 id='h' style="position: relative;
           top: -155px;
           text-align: center;
@@ -96,11 +98,11 @@
             display: block;
             height: 350px;
             border-radius: 50%;">
-             <table id='tab1' class="table table-bordered table-info" style="margin-bottom:40px;position:relative;top:100px;position:relative;width:600px;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
-             <button id="more" style="margin-left: auto;
+             <table id='tab1' class="table table-bordered table-info" style="margin-bottom:9.5%;position:relative;top:100px;position:relative;width:max-content;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
+             <button id="more" style="margin-left:auto;
              margin-right: auto;
              display: block;
-             margin-top: -115px;
+             margin-top: -9.5%;
              margin-bottom: 40px;
              border-radius: 15px;
             padding: 3px 7px 3px 7px;
@@ -109,7 +111,7 @@
             font-weight: 700;
              background-color: ghostwhite;">Load More</button>
              <label id="no_more" style="display:none;">No More Bills to Load</label>
-            <button id='g1' style="margin: 7% auto 10%;background-color:orange;top:80px;position:relative;width:100px;margin-left: auto;margin-right: auto;display: block;"></button>
+            <button id='g1' style="margin: 7% auto 10%;background-color:orange;top:80px;position:relative;width:100px;margin-left: auto;margin-right: auto;display: block;margin-top: -3.5%;"></button>
     </div>
     <!-- <footer>
       <p style="height: 70px;display:inline-flex; background-color: #FBDA61;
@@ -208,6 +210,7 @@
           $('#g').show()
           $('#no_more').hide()
           $('#im').hide()
+          $('#more').hide()
                 row=$(this).closest("tr")
                number=row.find(".pn").val()
                 $.ajax({

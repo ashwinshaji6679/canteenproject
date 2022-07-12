@@ -1,10 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" style="height: -webkit-fill-available">
+<html lang="en" style="height: -webkit-fill-available;
+width: -webkit-fill-available;
+position: fixed;">
 
 <head>
     <meta charset="utf-8">
     <title>Menu</title>
+     <meta http-equiv="refresh" content="3"> 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Google Web Fonts -->
@@ -17,14 +20,15 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <style type="text/css">
-        html,body,#t{
+        body #t{
             background-image: linear-gradient( 135deg, #F0FF00 10%, #58CFFB 100%);
             background-repeat: no-repeat;
-        }
+            background-size: cover;
+        } 
 </style>
 </head>
 
-<body>
+<body style="  background-image: linear-gradient( 135deg, #F0FF00 10%, #58CFFB 100%);">
     <!-- Navbar Start -->
  <div style="width:100%">
         <div class="">
@@ -61,9 +65,9 @@
     
      <div class="container-fluid p-0 mb-5" id='t'>
     
-     <div id='l'>
+     <div id='l' >
           <h3 id='hw' style="position:relative;top:70px;text-align:center;"></h3>
-          <table id='tab' class="table table-danger table-bordered" style="position:relative;top:80px;position:relative;width:600px;margin-left: auto;margin-right:auto;text-align: center;table-layout: fixed;"></table>
+          <table id='tab' class="table table-danger table-bordered" style="display:table;position:relative;top:80px;position:relative;width:max-content;margin-left: auto;margin-right:auto;text-align: center;table-layout: fixed;"></table>
           <img src='' id='im' style="position:relative;top: 101px;
           margin-left: auto;
           margin-right: auto;

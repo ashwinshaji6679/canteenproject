@@ -73,7 +73,11 @@
 
            <div class="">
                  <div class="c">
-                    <img class="img-fluid" src="{% static 'img/food2.jpg' %}" alt="Image"  style="width:100%; max-width: 1400px;height: 100vh;filter: brightness(0.5);position: absolute;">
+                    <img class="img-fluid" src="{% static 'img/food2.jpg' %}" alt="Image"  style="    width: -webkit-fill-available;
+                    max-width: 1400px;
+                    height: fit-content;
+                    filter: brightness(0.5);
+                    position: fixed;">
                         <div class="overlay" style="width: 100%; max-width: 900px;top: 120px;
                         margin-left: 107px;display: flexbox;position: relative;">
                             <h3 class="display-3 text-white">Canteen Management<br>System</h3>
