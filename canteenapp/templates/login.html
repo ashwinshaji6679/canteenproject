@@ -38,9 +38,6 @@
 <body style="background-image:url(/static/img/login-back3.jpg); background-size: cover;
 background-repeat: no-repeat;
 height: auto;">
-    <!-- <div class="alert alert-danger hidden a">
-        <strong>Invalid!</strong>
-    </div> -->
 
     <div class="container">
         <br><br><br>
@@ -54,7 +51,7 @@ height: auto;">
                         <!-- Nested Row within Card Body -->
                         <div class="row" class="col-lg-6">
                             <div class="col-lg-6 d-none d-lg-block">
-                                <img src="{% static 'img/logo1.JPG' %}" style="width:470px;height: 440px;border: 2px solid white;">
+                                <img src="{% static 'img/logo1.JPG' %}" style="width:473px;height: 452px;border: 2px solid white;">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -72,12 +69,13 @@ height: auto;">
                                                 id="college_id" placeholder="College_id">
                                         </div>
                                        
-                                        <a id="b1" class="btn btn-primary btn-user btn-block" style="margin-top: 40px;">
+                                        <a id="b1" class="btn btn-primary btn-user btn-block" style="margin-top: 30px;">
                                             Login
                                         </a>
-                                         <a id="b2" class="btn btn-primary btn-user btn-block" href="{% url 'reg' %}">
+                                         <a id="b2" class="btn btn-primary btn-user btn-block" href="{% url 'reg' %}" style="margin-bottom: 10px;">
                                             Register
                                         </a>
+                                        <a style="margin-left: 60%;" href="{% url 'forgot_password' %}">Forgot Password?</a>
                                         
                                     </form>
                                     
@@ -92,184 +90,6 @@ height: auto;">
         </div>
 
     </div>
-
-<!-- Loader -->
-
-    <!-- <div class="container">
-
-        <div class="h1Container">
-      
-          <div class="cube h1 w1 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w1 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w1 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w2 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w2 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w2 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w3 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w3 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h1 w3 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-        </div>
-        
-        <div class="h2Container">
-      
-          <div class="cube h2 w1 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w1 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w1 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w2 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w2 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w2 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w3 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w3 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h2 w3 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-        </div>
-        
-        <div class="h3Container">
-      
-          <div class="cube h3 w1 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w1 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w1 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w2 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w2 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w2 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w3 l1">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w3 l2">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-      
-          <div class="cube h3 w3 l3">
-            <div class="face top"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-          </div>
-        </div>
-        
-      </div> -->
-      <!-- Loader End -->
 
     <!-- Bootstrap core JavaScript-->
     
