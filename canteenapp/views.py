@@ -2,11 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import json
 from django.core import serializers
+from django.conf import settings
+from django.core.mail import send_mail,EmailMessage
+import os
+
 
 from .models import *
 # Create your views here.
 def logout(request):
     return render(request, "login.html", {})
+def forgot(request):
+    return render(request, "forgot.html", {})
 def show_order_admin(request):
     return render(request,"order_view.html", {})
 def Bill_view(request):
@@ -37,6 +43,21 @@ def Show_user(request):
     return render(request, "showuser.html", {})
 def stats_view(request):
     return render(request, "stats.html", {})
+def forgot_password(request):
+    return render(request, "forgot_password.html", {})
+def send_password(request):
+     email = request.GET.get("email")
+     print(email)
+     if ulogin1.objects.filter(email=email).exists():
+        i=ulogin1.objects.get(email=email)
+        password=str(i.password)
+        username=str(i.username)
+        subject='Forgot Password Request'
+        content='Greetings from FoodKart-ACMS MITS ✌\n\nIn response to your request,furnishing your Account Credentials below:\n\nUsername --> '+username+'\nPassword --> '+password+'\n\n😋 Keep Fooding!\n\n\nFor any queries contact:\n\n\tfoodkart.acms.mits1@gmail.com\n\n 🛑 NB: Please keep this mail strictly confidential 🛑'
+        send_mail(subject, content, settings.EMAIL_HOST_USER, [email], auth_user=settings.EMAIL_HOST_USER, auth_password=settings.EMAIL_HOST_PASSWORD)
+        return HttpResponse("Success")
+     else:
+         return HttpResponse("Email is not registered with us")
 def user_reg(request):
     name=request.GET.get("name")
     email=request.GET.get("email")
@@ -55,16 +76,16 @@ def user_reg(request):
    
 def check_login(request):
     username = request.GET.get("uname")
-    college_id= request.GET.get("college_id")
-    print(username,college_id)
-    i=ulogin1.objects.filter(username=username,college_id=college_id)
+    password= request.GET.get("password")
+    print(username)
+    i=ulogin1.objects.filter(username=username,password=password)
     print(i)
-    request.session['id']=college_id
+    request.session['id']=password
     c=i.count()
     print(c)
     if c==1:          
         return HttpResponse("user login")
-    elif username=='ADMIN' and college_id=='ADMIN':
+    elif username=='ADMIN' and password=='ADMIN':
         return HttpResponse("admin login")
     else:
         return HttpResponse("Invalid")
@@ -166,8 +187,8 @@ def Day_food_view(request):
 
     print(now.strftime("%H:%M:%S"))
     x = datetime.strptime(x,"%H:%M:%S")
-    y = datetime.strptime('10:30:00',"%H:%M:%S")
-    y1= datetime.strptime('16:30:00',"%H:%M:%S")
+    y = datetime.strptime('00:10:00',"%H:%M:%S")
+    y1= datetime.strptime('23:30:00',"%H:%M:%S")
     
     if day=='Sun':
         return HttpResponse("holiday")
