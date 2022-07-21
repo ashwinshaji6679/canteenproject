@@ -58,7 +58,8 @@ height: fit-content;">
           <h1 style="position:relative;top:60px;text-align:center;background-color: aliceblue;width: 232px;margin-left: auto;margin-right: auto;display: block;">Users List</h1>
           <table id='tab' class="table table-dark" style="margin-bottom:200px;position:relative;top:200px;position:relative;top: 98px;width: 640px;align-self: center; text-align: center;margin-left: auto;
           margin-right: auto;
-          display: table;"></table>
+          display: table;height: fit-content;
+    width: fit-content;"></table>
     </div>
    
 
@@ -79,6 +80,7 @@ height: fit-content;">
 
                  
                    tr1.append("<th>Name</th>");
+                   tr1.append("<th>Username</th>");
                    tr1.append("<th>College-id</th>");
                    tr1.append("<th>Email-id</th>");
                   
@@ -88,6 +90,7 @@ height: fit-content;">
                        for(i=0;i<d.d1.length;i++){
                         var r1=$("<tr/>")
                         r1.append("<td><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.name+"'>"+d.d1[i].fields.name+"</td>");
+                        r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.username+"'>"+d.d1[i].fields.username+"</td>");
                          r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.college_id+"'>"+d.d1[i].fields.college_id+"</td>");
                         r1.append("<td><input type='hidden' class='pr1' value='"+d.d1[i].fields.email+"'>"+d.d1[i].fields.email+"</td>");
                        
