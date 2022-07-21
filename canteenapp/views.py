@@ -52,7 +52,7 @@ def send_password(request):
         password=str(i.password)
         username=str(i.username)
         subject='Forgot Password Request'
-        content='Greetings from ACMS MITS. As per your request, furnishing your credentials below \nUsername : '+username+'\nPassword : '+password+'\n\nKeep Fooding!'
+        content='Greetings from FoodKart-ACMS MITS ✌\n\nIn response to your request,furnishing your Account Credentials below:\n\nUsername --> '+username+'\nPassword --> '+password+'\n\n😋 Keep Fooding!\n\n\nFor any queries contact:\n\n\tfoodkart.acms.mits@gmail.com\n\n 🛑 NB: Please keep this mail strictly confidential 🛑'
         # send_mail(subject,message,from_email,recipient_list)
         sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
         from_email = Email(settings.EMAIL_HOST_USER)  # Change to your verified sender
@@ -86,16 +86,16 @@ def user_reg(request):
    
 def check_login(request):
     username = request.GET.get("uname")
-    college_id= request.GET.get("college_id")
-    print(username,college_id)
-    i=ulogin1.objects.filter(username=username,college_id=college_id)
+    password= request.GET.get("password")
+    print(username)
+    i=ulogin1.objects.filter(username=username,password=password)
     print(i)
-    request.session['id']=college_id
+    request.session['id']=password
     c=i.count()
     print(c)
     if c==1:          
         return HttpResponse("user login")
-    elif username=='ADMIN' and college_id=='ADMIN':
+    elif username=='ADMIN' and password=='ADMIN':
         return HttpResponse("admin login")
     else:
         return HttpResponse("Invalid")

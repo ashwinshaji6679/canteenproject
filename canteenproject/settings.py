@@ -132,9 +132,5 @@ USE_TZ = False
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rohanorigami@gmail.com'
+EMAIL_HOST_USER = 'foodkart.acms.mits@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
-
-
-
-# API-KEY -------->    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
