@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from canteenapp.views import *
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,6 +28,8 @@ urlpatterns = [
    
     url(r'^$',display_login),
     url(r'^Display_login',Display_login, name="Display_login"),
+    url(r'^forgot_password',forgot_password, name="forgot_password"),
+    url(r'^send_password',send_password, name="send_password"),
     url(r'^reg', reg, name="reg"),
     url(r'^user_reg', user_reg, name="user_reg"),
     url(r'^home_user',home_user, name="home_user"),
@@ -70,3 +76,4 @@ urlpatterns = [
     
     ##
 ]
+

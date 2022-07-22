@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import json
 from django.core import serializers
+from django.conf import settings
+from django.core.mail import send_mail
+import os
+
 
 from .models import *
 # Create your views here.
@@ -37,13 +41,29 @@ def Show_user(request):
     return render(request, "showuser.html", {})
 def stats_view(request):
     return render(request, "stats.html", {})
+def forgot_password(request):
+    return render(request, "forgot_password.html", {})
+def send_password(request):
+     email = request.GET.get("email")
+     print(email)
+     if ulogin1.objects.filter(email=email).exists():
+        i=ulogin1.objects.get(email=email)
+        password=str(i.password)
+        username=str(i.username)
+        college_id=str(i.college_id)
+        subject='Forgot Password Request'
+        content='Greetings from FoodKart-ACMS MITS ✌\n\nIn response to your request,furnishing your Account Credentials below:\n\nUsername --> '+username+'\nCollege ID --> '+college_id+'\nPassword --> '+password+'\n\n😋 Keep Fooding!\n\n\nFor any queries contact:\n\n\tfoodkart.acms.mits1@gmail.com\n\n 🛑 NB: Please keep this mail strictly confidential 🛑'
+        send_mail(subject, content, settings.EMAIL_HOST_USER, [email], auth_user=settings.EMAIL_HOST_USER, auth_password=settings.EMAIL_HOST_PASSWORD)
+        return HttpResponse("Success")
+     else:
+         return HttpResponse("Email is not registered with us")
 def user_reg(request):
     name=request.GET.get("name")
     email=request.GET.get("email")
     password=request.GET.get("password")
     college_id=request.GET.get("college_id")
     username=request.GET.get("username")
-    c=ulogin1.objects.filter(college_id=college_id,password=password)
+    c=ulogin1.objects.filter(college_id=college_id,password=password,name=name,username=username,email=email)
     if c:
         return HttpResponse("Already Registered")
     elif name=="" or password=="" or username=="" or email=='' or college_id=='':
@@ -55,16 +75,17 @@ def user_reg(request):
    
 def check_login(request):
     username = request.GET.get("uname")
-    college_id= request.GET.get("college_id")
-    print(username,college_id)
-    i=ulogin1.objects.filter(username=username,college_id=college_id)
+    password = request.GET.get("password")
+    college_id = request.GET.get("college_id")
+    print(username)
+    i=ulogin1.objects.filter(username=username,password=password,college_id=college_id)
     print(i)
     request.session['id']=college_id
     c=i.count()
     print(c)
     if c==1:          
         return HttpResponse("user login")
-    elif username=='ADMIN' and college_id=='ADMIN':
+    elif username=='ADMIN' and password=='ADMIN':
         return HttpResponse("admin login")
     else:
         return HttpResponse("Invalid")
@@ -88,7 +109,6 @@ def store_food_item(request):
     price = request.GET.get("price")
    
     i=food.objects.filter(name=name.title())
-    #request.session['username']=var1
     c=i.count()
     #print(c)
     if name=="" or price=="":
@@ -125,7 +145,6 @@ def day_food(request):
   
     o=now.strftime("%m/%d/%Y") 
     i=dayfood1.objects.filter(name=name,date=o)
-    #request.session['username']=var1
     c=i.count()
     #print(c)
     if c==1:          
@@ -369,6 +388,7 @@ def User_bill(request):
          now = datetime.now()
          o=now.strftime("%m/%d/%Y") 
          user=request.session['id']
+         print(user)
          user_name=ulogin1.objects.get(college_id=user)
          user=user_name.name
          v1=bill5.objects.filter(name=user,status='paid').order_by('-key')
