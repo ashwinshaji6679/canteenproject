@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: -webkit-fill-available;">
 
 <head>
     <meta charset="utf-8">
@@ -40,20 +40,11 @@
     display: block;
     font-family: 'Times New Roman', Times, serif;
 }
-
-/* #t{
-  background-image: url(/static/img/bills.webp);
-  background-size: cover;
-  -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-
-} */
     </style>
 </head>
 
 
-<body id="t">
+<body >
     <!-- Navbar Start -->
     <div style='width:100%'>
         <div class="">
@@ -159,7 +150,7 @@
                               r1.append("<td><input type='hidden' class='pr1' value='"+v4+"'>"+v4+"</td>");
                          r1.append("<td><input type='hidden' class='pr1' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
                          r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.time+"'>"+d.d1[i].fields.time+"</td>");
-                         r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.date+"'>"+dateFormat(d.d1[i].fields.date, 'dd/MM/yyyy')+"</td>");
+                         r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.date+"'>"+d.d1[i].fields.date+"</td>");
                            r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
                             r1.append("<td><input type='hidden' class='pr2' value='"+d.d1[i].fields.use+"'>"+d.d1[i].fields.use+"</td>");
                     
@@ -223,33 +214,6 @@
         }
 
 </script>
-<script>
-        
-  function dateFormat(inputDate, format) {
-  //parse the input date
-  const date = new Date(inputDate);
-  
-  //extract the parts of the date
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();    
-  
-  //replace the month
-  format = format.replace("MM", month.toString().padStart(2,"0"));        
-  
-  //replace the year
-  if (format.indexOf("yyyy") > -1) {
-      format = format.replace("yyyy", year.toString());
-  } else if (format.indexOf("yy") > -1) {
-      format = format.replace("yy", year.toString().substr(2,2));
-  }
-  
-  //replace the day
-  format = format.replace("dd", day.toString().padStart(2,"0"));
-  
-  return format;
-  }
-  </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
