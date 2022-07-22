@@ -131,10 +131,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-DEFAULT_FROM_MAIL = os.environ['EMAIL_HOST_USER']
-SERVER_MAIL = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+# DEFAULT_FROM_MAIL = os.environ['EMAIL_HOST_USER']
+# SERVER_MAIL = os.environ['EMAIL_HOST_USER']
+# EMAIL_HOST = os.environ['EMAIL_HOST']
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
