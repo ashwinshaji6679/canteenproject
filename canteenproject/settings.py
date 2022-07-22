@@ -129,7 +129,8 @@ USE_TZ = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 DEFAULT_FROM_MAIL = os.environ['EMAIL_HOST_USER']
 SERVER_MAIL = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST = os.environ['EMAIL_HOST']
