@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import json
 from django.core import serializers
-from django.conf import settings
-from django.core.mail import send_mail,EmailMessage
+# from django.conf import settings
+from django.core.mail import send_mail
 import os
 
 
@@ -54,7 +54,7 @@ def send_password(request):
         username=str(i.username)
         subject='Forgot Password Request'
         content='Greetings from FoodKart-ACMS MITS ✌\n\nIn response to your request,furnishing your Account Credentials below:\n\nUsername --> '+username+'\nPassword --> '+password+'\n\n😋 Keep Fooding!\n\n\nFor any queries contact:\n\n\tfoodkart.acms.mits1@gmail.com\n\n 🛑 NB: Please keep this mail strictly confidential 🛑'
-        send_mail(subject, content, settings.EMAIL_HOST_USER, [email], auth_user=settings.EMAIL_HOST_USER, auth_password=settings.EMAIL_HOST_PASSWORD)
+        send_mail(subject, content,os.environ.get('EMAIL_HOST_USER'), [email], auth_user=os.environ.get('EMAIL_HOST_USER'), auth_password=os.environ.get('EMAIL_HOST_PASSWORD'))
         return HttpResponse("Success")
      else:
          return HttpResponse("Email is not registered with us")
