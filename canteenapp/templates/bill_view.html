@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" style="height: -webkit-fill-available;">
+<html lang="en" style="height:fit-content;background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);">
 <head>
     <meta charset="utf-8">
     <title>View Bills</title>
@@ -18,15 +18,15 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <style>
-       #t{
+      #t{
         background-color: #FBDA61;
-        background-image: linear-gradient(100deg, #FBDA61 25%, #FF5ACD 100%);
+        background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);
           -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
             
-      }  
+      } 
       #no_more{
         position: relative;
         margin-bottom:40px;
@@ -43,7 +43,7 @@
     </style>
 </head>
 
-<body id="t" style="background-image: linear-gradient(100deg, #FBDA61 25%, #FF5ACD 100%);">
+<body id="t" >
     <!-- Navbar Start -->
    <div style="width:100%">
         <div class="">
@@ -84,12 +84,13 @@
           <table id='tab' class="table table-dark" style="position:relative;top:80px;margin-bottom:9.5%;width:fit-content;text-align: center;margin-left: auto;margin-right: auto;display: table;"></table>
 </div>
           <h4 id='h' style="position: relative;
-          top: -70px;
+          top: -155px;
           text-align: center;
           margin-left: auto;
           margin-right: auto;
           display: block;"></h4>
             <img src='' id='im' style="position: relative;
+            top: -72px;
             width: 390px;
             margin-top: -57px;
             margin-left: auto;
@@ -112,6 +113,10 @@
              <label id="no_more" style="display:none;">No More Bills to Load</label>
             <button id='g1' style="margin: 7% auto 10%;background-color:orange;top:80px;position:relative;width:100px;margin-left: auto;margin-right: auto;display: block;margin-top: -3.5%;"></button>
     </div>
+    <!-- <footer>
+      <p style="height: 70px;display:inline-flex; background-color: #FBDA61;
+      background-image: linear-gradient(45deg, #FBDA61 25%, #FF5ACD 100%);"></p>
+    </footer> -->
 
 </div>
 
@@ -146,7 +151,6 @@
                    tr1.append("<th>Bill No</th>");
                    tr1.append("<th>Items</th>");
                     tr1.append("<th>Quantity</th>");
-                    tr1.append("<th>Date</th>");
                      tr1.append("<th>Amount</th>");
                     tr1.append("<th>Status</th>");
 
@@ -175,9 +179,8 @@
                        
                           r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
                           r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
-                            r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.date+"'>"+dateFormat(d.d1[i].fields.date, 'dd/MM/yyyy')+"</td>");
                             r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
-                            r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
+                         r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
                           
                          if (d.d1[i].fields.use!='deleted' && d.d1[i].fields.use!='used'){
                               r1.append("<td><input type='button' class='ed1' value='View'></td>");
@@ -329,7 +332,6 @@
                        
                           r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
                           r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
-                          r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.date+"'>"+dateFormat(d.d1[i].fields.date, 'dd/MM/yyyy')+"</td>");
                             r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
                          r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
                           
@@ -366,7 +368,6 @@
                        
                           r1.append("<td><input type='hidden' class='pr' value='"+v+"'>"+v+"</td>");
                           r1.append("<td><input type='hidden' class='pr' value='"+v4+"'>"+v4+"</td>");
-                          r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.date+"'>"+dateFormat(d.d1[i].fields.date, 'dd/MM/yyyy')+"</td>");
                             r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.price+"'>"+d.d1[i].fields.price+"</td>");
                          r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.status+"'>"+d.d1[i].fields.status+"</td>");
                           
@@ -394,34 +395,6 @@
                    
     
 </script>
-<script>
-        
-  function dateFormat(inputDate, format) {
-  //parse the input date
-  const date = new Date(inputDate);
-  
-  //extract the parts of the date
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();    
-  
-  //replace the month
-  format = format.replace("MM", month.toString().padStart(2,"0"));        
-  
-  //replace the year
-  if (format.indexOf("yyyy") > -1) {
-      format = format.replace("yyyy", year.toString());
-  } else if (format.indexOf("yy") > -1) {
-      format = format.replace("yy", year.toString().substr(2,2));
-  }
-  
-  //replace the day
-  format = format.replace("dd", day.toString().padStart(2,"0"));
-  
-  return format;
-  }
-  </script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Javascript -->
