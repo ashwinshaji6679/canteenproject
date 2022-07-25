@@ -237,7 +237,7 @@ def order_food(request):
     v4=int(v1)-int(quantity)
     
     if v4>=0:
-        if cart.objects.filter(item=name,date=o).exists():
+        if cart.objects.filter(name=user_name1,item=name,date=o).exists():
             return HttpResponse("Food item already ordered today. Cannot order today")
 
         v.plate=str(v4)
