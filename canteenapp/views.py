@@ -530,11 +530,12 @@ def Decrement_menu(request):
     o=now.strftime("%m/%d/%Y") 
     obj3=dayfood1.objects.get(key=ci,date=o)
     obj3.plate=str(int(obj3.plate)-1)
+    v4=int(obj3.plate)
     print(obj3.plate)
     obj3.save()
-    if obj3.plate==0:
-        dayfood1.objects.get(key=id2).delete()
-    return HttpResponse("Incremented")
+    if v4<=0:
+        dayfood1.objects.get(key=ci).delete()
+    return HttpResponse("Decremented")
 
 def Delete_menu(request): 
     ci=request.GET.get("id2")
