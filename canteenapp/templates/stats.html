@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" style="height: -webkit-fill-available;">
+<html lang="en" style=" background: url('static/img/stat.webp') no-repeat; 
+background-size: cover;height: -webkit-fill-available;width:-webkit-fill-available">
 
 <head>
     <meta charset="utf-8">
@@ -22,6 +23,7 @@
  #t{
             background: url('static/img/stat.webp') no-repeat; 
             background-size: cover;
+            display: flow-root;
  }
  #d{
     margin-left: auto;
@@ -87,7 +89,7 @@
     <!-- Navbar End -->
 
      <div class="container-fluid p-0 mb-5" id='t'>
-     <div id='l' style="display:flow-root ;">
+     <div id='l' class="container-fluid p-0 mb-5" style="display:flow-root;">
           <h3 id='hw' style="position:relative;display:block;top:70px;text-align:center;background-color: yellow;width:fit-content;
           text-align: center;
           padding: 5px;
@@ -215,7 +217,8 @@
                 $('#tab').append(tr1);
                 $("#tab").show()
             alert("No Data Available")
-
+            $('#more').hide() 
+            $('#no_more').hide() 
             }
             else{
                 $("#tab").empty()
@@ -229,7 +232,9 @@
                     r1.append("<td><input type='hidden' class='id' value='"+d.d1[i].pk+"'><input type='hidden' class='pn' value='"+d.d1[i].fields.date+"'>"+d.d1[i].fields.date+"</td>");
                      r1.append("<td><input type='hidden' class='pr' value='"+d.d1[i].fields.amount+"'>"+d.d1[i].fields.amount+"</td>");
                 
-            $('#tab').append(r1)               
+            $('#tab').append(r1)  
+            $('#more').hide() 
+            $('#no_more').hide()            
             }}
         }
         })
