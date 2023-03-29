@@ -281,12 +281,7 @@ def bill(request):
     user=request.session['id']
     user_name=ulogin1.objects.get(college_id=user)
     user=user_name.name
-    while(1):
-        res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 6))
-        if bill5.objects.filter(id=str(res)).exists():
-            continue
-        else:
-            break
+    res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 6))
     k=cart.objects.filter(name=user,date=o)
     k1=k.count()
     m=[]
